@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'json-2-react'
+import JSON2React from 'json-2-react'
+import elements from './elements.json'
 
 export default class App extends Component {
   render () {
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        <JSON2React elements={elements} />
       </div>
     )
   }

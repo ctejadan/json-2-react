@@ -1,21 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
+export default class JSON2React extends Component {
   static propTypes = {
-    text: PropTypes.string
+    elements: PropTypes.array
+  }
+
+  renderElements=(elements) => {
+    return elements.map((element, ix) =>
+      React.createElement(
+        element.type,
+        { className: element.className, style: element.style, href: element.href, src: element.src, key: element.type + '-' + ix }, element.data || (element.children && element.children.length > 0 && this.renderElements(element.children))
+      )
+    )
   }
 
   render() {
     const {
-      text
+      elements
     } = this.props
 
     return (
-      <div className={styles.test}>
-        Example Component: {text}
+      <div>
+        {this.renderElements(elements)}
       </div>
     )
   }
